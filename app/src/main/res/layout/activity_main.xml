@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="378dp"
+        android:gravity="center"
+        android:text="APP CHAT"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+        android:orientation="horizontal"
+
+        <Button
+            android:id="@+id/btnDangNhap"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:text="Đăng nhập" />
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnDangKy"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button1"
+            android:text="Đăng ký" />
+
+    </LinearLayout>
+
+</LinearLayout>
