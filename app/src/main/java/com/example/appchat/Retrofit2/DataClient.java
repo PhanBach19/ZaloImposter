@@ -17,4 +17,7 @@ public interface DataClient {
 
     @POST("api")
     Call<Message> ThemNguoiDung(@Body NguoiDung nguoiDung);
+
+    @POST("api/login")
+    Call<Message> DangNhap(@Body NguoiDung nguoiDung);
 }

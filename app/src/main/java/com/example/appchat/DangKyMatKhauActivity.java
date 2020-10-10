@@ -82,14 +82,12 @@ public class DangKyMatKhauActivity extends AppCompatActivity {
                             Intent intent = new Intent(DangKyMatKhauActivity.this, TroChuyenActivity.class);
                             startActivity(intent);
                             finish();
-
-                            Log.e("token_nguoi_dung", message.getToken());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Message> call, Throwable t) {
-                        Log.e("token_nguoi_dung", t.getMessage());
+                        Log.e("Lỗi Server: ", t.getMessage());
                     }
                 });
             }

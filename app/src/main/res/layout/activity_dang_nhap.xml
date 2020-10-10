@@ -59,6 +59,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/etxtSoDienThoai_DangNhap"
             android:hint="Số điện thoại"
             android:fontFamily="@font/rubik"
             android:textSize="18dp"
@@ -67,6 +68,7 @@
             android:layout_height="wrap_content"></EditText>
 
         <EditText
+            android:id="@+id/etxtMatKhau_DangNhap"
             android:layout_marginTop="20dp"
             android:hint="Mật khẩu"
             android:textSize="18dp"
@@ -76,6 +78,7 @@
             android:layout_height="wrap_content"></EditText>
 
         <Button
+            android:id="@+id/btnTiepTuc_DangNhap"
             android:layout_marginTop="30dp"
             android:background="@drawable/custom_button_continue"
             android:text="Tiếp tục"
