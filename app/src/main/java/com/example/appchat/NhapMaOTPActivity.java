@@ -150,7 +150,7 @@ public class NhapMaOTPActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent intent_03 = new Intent(NhapMaOTPActivity.this, TroChuyenActivity.class);
+                    Intent intent_03 = new Intent(NhapMaOTPActivity.this, DangKyMatKhauActivity.class);
                     intent_03.putExtra("SoDienThoai_DangKy", SoDienThoai_XacThuc);
                     intent_03.putExtra("HoTen_DangKy", HoTen_DangKy);
 

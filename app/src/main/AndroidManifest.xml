@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.appchat">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DangKyMatKhauActivity"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TroChuyenActivity"></activity>
+        <activity android:name=".TroChuyenActivity" />
         <activity android:name=".NhapMaOTPActivity" />
         <activity android:name=".DangKyHoTenActivity" />
-        <activity android:name=".DangKySoDienThoaiActivity"></activity>
+        <activity android:name=".DangKySoDienThoaiActivity" />
         <activity android:name=".DangNhapActivity" />
-        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".WelcomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

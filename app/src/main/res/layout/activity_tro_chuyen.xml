@@ -6,7 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".TroChuyenActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/container_action_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#016AFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAlignment="textStart"
+            android:background="#00000000"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="Tìm Bạn Bè Bằng Số Điện Thoại"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></Button>
+
+        <ImageButton
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="#00FFFFFF"
+            android:paddingEnd="3dp"
+            android:id="@+id/btnCross_DangNhap"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"></ImageButton>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <FrameLayout
+        android:layout_below="@+id/container_action_bar"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
