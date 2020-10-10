@@ -5,65 +5,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context=".WelcomeActivity">
 
-    tools:context=".MainActivity">
-
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/container_action_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#016AFF"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:gravity="center"
-        android:text="Tạo tài khoản"
-        android:textSize="30dp" />
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/btnBack_DangKy_OTP"
+            android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+            android:background="#00FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></ImageButton>
+
+        <TextView
+            android:textColor="#fff"
+            android:fontFamily="@font/rubik_medium"
+            app:layout_constraintStart_toStartOf="@+id/btnBack_DangKy_OTP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Nhập mã xác thực"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f3f3f3"
-        android:text="Vui lòng không chia sẽ mã xác thực để tránh mất tài khoản" />
+        android:text="Vui lòng không chia sẻ mã xác thực để tránh mất tài khoản" />
 
+    <ProgressBar
+        android:padding="8dp"
+        android:id="@+id/prgbr_Waiting_OTP_DangKy"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:theme="@style/AppTheme.LoadingMaXacThuc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></ProgressBar>
     <TextView
-        android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Đã gửi mã xác thực tới số điện thoại của bạn" />
+        android:id="@+id/txt_notify_sending_otp"
+        android:fontFamily="@font/rubik"
+        android:layout_gravity="center"
+        android:text="Đang Gửi Mã Xác Nhận"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></TextView>
 
     <LinearLayout
+        android:id="@+id/container_nhap_ma_xac_thuc"
+        android:visibility="gone"
+        android:paddingTop="30dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextMaXacThuc"
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:fontFamily="@font/rubik"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:text="Đã gửi mã đến số "
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+            <TextView
+                android:id="@+id/txtSoDienThoai_XacThuc"
+                android:fontFamily="@font/rubik"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:text="0963 xxx xxx"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+
+        <TextView
+            android:fontFamily="@font/rubik"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:text="Xin vui lòng kiểm tra SMS và điền mã xác nhận bên dưới"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+
+        <EditText
+            android:id="@+id/etxtMaOTP_DangKy"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Điền mã đã nhận "
-            android:inputType="textPersonName" />
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:fontFamily="@font/rubik"
+            android:layout_marginTop="20dp"
+            android:hint="Mã xác nhận của bạn"
+            android:inputType="phone" />
+
+        <Button
+            android:id="@+id/btnTiepTuc_MaOTP_DangKy"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_button_continue"
+            android:text="Tiếp tục"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#fff"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Button>
     </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageButton
-            android:id="@+id/btnNext"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="36dp"
-            android:accessibilityLiveRegion="none"
-            android:adjustViewBounds="false"
-            android:background="@drawable/custom_button_log"
-            android:src="@drawable/next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.956"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </LinearLayout>
