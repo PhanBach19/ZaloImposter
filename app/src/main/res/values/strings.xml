@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppChat</string>
+    <string name="app_name">Imposter</string>
     <string name="title_activity_trang_chu">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
