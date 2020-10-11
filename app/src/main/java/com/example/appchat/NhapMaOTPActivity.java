@@ -196,7 +196,7 @@ public class NhapMaOTPActivity extends AppCompatActivity {
                         container_err_sms_sending.setVisibility(View.VISIBLE);
                         btnTiepTuc_MaOTP_DangKy.setVisibility(View.GONE);
 
-                        CountDownTimer timer = new CountDownTimer(10 * 1000, 1000) {
+                        CountDownTimer timer = new CountDownTimer(60 * 1000, 1000) {
                             @Override
                             public void onTick(long millisUntilFinished) {
                                 btnResend_Code_DangKy.setText(Long.toString(millisUntilFinished/1000) + " s");
@@ -262,7 +262,7 @@ public class NhapMaOTPActivity extends AppCompatActivity {
                         container_err_sms_sending.setVisibility(View.VISIBLE);
                         btnTiepTuc_MaOTP_DangKy.setVisibility(View.GONE);
 
-                        CountDownTimer timer = new CountDownTimer(10 * 1000, 1000) {
+                        CountDownTimer timer = new CountDownTimer(60 * 1000, 1000) {
                             @Override
                             public void onTick(long millisUntilFinished) {
                                 btnResend_Code_DangKy.setText(Long.toString(millisUntilFinished/1000) + " s");
