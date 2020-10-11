@@ -3,6 +3,7 @@ package com.example.appchat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.example.appchat.Models.Message;
 import com.example.appchat.Models.NguoiDung;
@@ -27,6 +30,8 @@ public class DangNhapActivity extends AppCompatActivity {
 
     EditText editTextMatKhau_DangNhap;
     EditText editTextSDT_DangNhap;
+
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +76,20 @@ public class DangNhapActivity extends AppCompatActivity {
 
                         if(message != null){
                             if(message.getSuccess() == 1){
+                                //Lưu Thông Tin Đăng Nhập Của Người Dùng
+                                preferences = getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("SoDienThoai", SDT);
+                                editor.putString("MatKhau", MatKhau);
+                                editor.putString("Token_DangNhap", message.getToken());
+                                editor.apply();
+
                                 Intent intent = new Intent(DangNhapActivity.this, TroChuyenActivity.class);
                                 startActivity(intent);
 
                                 finish();
+                            }else {
+                                Toast.makeText(DangNhapActivity.this,"Đăng Nhập Thất Bại", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

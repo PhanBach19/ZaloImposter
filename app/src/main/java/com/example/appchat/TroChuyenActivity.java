@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TroChuyenActivity extends AppCompatActivity {
+    Fragment selectedFragment = null;
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +22,20 @@ public class TroChuyenActivity extends AppCompatActivity {
         //Ẩn Thanh Trạng Thái
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        Init_Data();
+
+        //Set Fragment Mặc Định Sẽ Mở Khi Load Activity
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TroChuyenFragment()).commit();
+    }
+
+    private void Init_Data(){
+        bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListerner);
     }
-    private BottomNavigationView.OnNavigationItemSelectedListener navListerner =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListerner = new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-
                     switch (item.getItemId()){
                         case R.id.nav_message:
                             selectedFragment = new TroChuyenFragment();
@@ -45,6 +52,7 @@ public class TroChuyenActivity extends AppCompatActivity {
                         default:
                             selectedFragment = new TroChuyenFragment();
                     }
+
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
                     return true;
                 }

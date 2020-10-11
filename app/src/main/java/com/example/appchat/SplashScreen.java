@@ -3,8 +3,10 @@ package com.example.appchat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.WindowManager;
 
 public class SplashScreen extends AppCompatActivity {
@@ -16,6 +18,15 @@ public class SplashScreen extends AppCompatActivity {
 
         //Ẩn Thanh Trạng Thái
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //Check Người Dùng Có Đăng Nhập Chưa
+        SharedPreferences preferences = getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
+        String token = preferences.getString("Token_DangNhap", "");
+        if(!token.isEmpty()){
+            Intent intent = new Intent(SplashScreen.this, TroChuyenActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
