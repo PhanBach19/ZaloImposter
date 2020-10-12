@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TroChuyenActivity extends AppCompatActivity {
-    Fragment selectedFragment = null;
+    Fragment selectedFragment;
     BottomNavigationView bottomNav;
 
     @Override
@@ -24,8 +24,10 @@ public class TroChuyenActivity extends AppCompatActivity {
 
         Init_Data();
 
+
         //Set Fragment Mặc Định Sẽ Mở Khi Load Activity
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TroChuyenFragment()).commit();
+        selectedFragment = new TroChuyenFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
     }
 
     private void Init_Data(){

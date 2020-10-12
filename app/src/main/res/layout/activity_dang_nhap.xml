@@ -26,15 +26,16 @@
             android:layout_height="wrap_content"></ImageButton>
 
         <TextView
-            android:textColor="#fff"
-            android:fontFamily="@font/rubik_medium"
-            app:layout_constraintStart_toStartOf="@+id/btnBack_DangNhap"
-            app:layout_constraintEnd_toEndOf="@+id/btnCross_DangNhap"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Đăng Nhập"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_medium"
+            android:text="Đăng Nhập"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnCross_DangNhap"
+            app:layout_constraintStart_toStartOf="@+id/btnBack_DangNhap"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"></TextView>
 
         <ImageButton

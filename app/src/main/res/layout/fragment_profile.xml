@@ -5,7 +5,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ProgressBar
+        android:id="@+id/prgbr_Loading_Profile"
+        android:scaleX="0.1"
+        android:scaleY="0.1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ProgressBar>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
         android:background="@drawable/rory_hennessey"
         android:paddingTop="80dp"
         android:paddingBottom="10dp"
@@ -34,7 +42,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingStart="15dp"
-            android:text="Imposter"
+            android:text=""
             android:textAlignment="center"
             android:textColor="#fff"
             android:textSize="20sp"
@@ -44,6 +52,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TableLayout
+        android:visibility="gone"
         android:id="@+id/container_infor_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +79,7 @@
                 android:id="@+id/txtContent_GioiTinh_TaiKhoan"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rubik"
-                android:text="Nam"
+                android:text=""
                 android:textColor="#606060"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +107,7 @@
                 android:id="@+id/txtContent_NgaySinh_TaiKhoan"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rubik"
-                android:text="09/02/1800"
+                android:text=""
                 android:textColor="#606060"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +135,7 @@
                 android:id="@+id/txtContent_SoDienThoai_TaiKhoan"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rubik"
-                android:text="0963579590"
+                android:text=""
                 android:textColor="#606060"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -135,6 +144,7 @@
     </TableLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

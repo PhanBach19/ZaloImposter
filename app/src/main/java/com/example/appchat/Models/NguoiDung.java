@@ -3,7 +3,12 @@ package com.example.appchat.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class NguoiDung {
+import java.io.Serializable;
+
+public class NguoiDung implements Serializable {
+    @SerializedName("MaNguoiDung")
+    @Expose
+    private int maNguoiDung;
     @SerializedName("HoTen")
     @Expose
     private String hoTen;
@@ -58,5 +63,13 @@ public class NguoiDung {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getMaNguoiDung() {
+        return maNguoiDung;
+    }
+
+    public void setMaNguoiDung(int maNguoiDung) {
+        this.maNguoiDung = maNguoiDung;
     }
 }
