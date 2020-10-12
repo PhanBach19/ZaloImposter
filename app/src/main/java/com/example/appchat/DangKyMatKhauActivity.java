@@ -3,6 +3,7 @@ package com.example.appchat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,8 @@ public class DangKyMatKhauActivity extends AppCompatActivity {
     ImageButton btnBack;
 
     EditText editTextMatKhau_DangKy;
+
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,7 @@ public class DangKyMatKhauActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MatKhau = editTextMatKhau_DangKy.getText().toString();
 
-                if(MatKhau.isEmpty()){
+                if (MatKhau.isEmpty()) {
                     return;
                 }
 
@@ -78,10 +81,20 @@ public class DangKyMatKhauActivity extends AppCompatActivity {
                     public void onResponse(Call<Message> call, Response<Message> response) {
                         Message message = (Message) response.body();
 
-                        if(message != null){
-                            Intent intent = new Intent(DangKyMatKhauActivity.this, TroChuyenActivity.class);
-                            startActivity(intent);
-                            finish();
+                        if (message != null) {
+                            if (message.getSuccess() == 1) {
+                                //Lưu Thông Tin Đăng Nhập Của Người Dùng
+                                preferences = getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("SoDienThoai", SDT);
+                                editor.putString("MatKhau", MatKhau);
+                                editor.putString("Token_DangNhap", message.getToken());
+                                editor.apply();
+
+                                Intent intent = new Intent(DangKyMatKhauActivity.this, TroChuyenActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
                     }
 

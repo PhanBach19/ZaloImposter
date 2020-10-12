@@ -10,6 +10,12 @@ public class NguoiDung {
     @SerializedName("SoDienThoai")
     @Expose
     private String soDienThoai;
+    @SerializedName("NgaySinh")
+    @Expose
+    private String ngaySinh;
+    @SerializedName("GioiTinh")
+    @Expose
+    private Boolean gioiTinh;
     @SerializedName("Password")
     @Expose
     private String password;
@@ -28,6 +34,22 @@ public class NguoiDung {
 
     public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
+    }
+
+    public String getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public Boolean getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(Boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
     public String getPassword() {
