@@ -65,6 +65,7 @@ public class SuaThongTinNguoiDungActivity extends AppCompatActivity {
     }
 
     protected void Init_Data(){
+        nguoi_dung_update = new NguoiDung();
         etxtNgaySinh_EditInfor = (EditText) findViewById(R.id.etxtNgaySinh_EditInfor);
         etxtNgaySinh_EditInfor.setEnabled(false);
         etxtHoTen_EditInfor = (EditText) findViewById(R.id.etxtHoTen_EditInfor);
@@ -89,7 +90,8 @@ public class SuaThongTinNguoiDungActivity extends AppCompatActivity {
             etxtHoTen_EditInfor.setText(HoTen);
         }
         if(NgaySinh != null){
-            etxtNgaySinh_EditInfor.setText(NgaySinh);
+            String[] ngaySinh = NgaySinh.split("-");
+            etxtNgaySinh_EditInfor.setText(ngaySinh[1] + "-" + ngaySinh[0] + "-" + ngaySinh[2]);
         }
         if(GioiTinh != null){
             if(GioiTinh){
@@ -100,6 +102,8 @@ public class SuaThongTinNguoiDungActivity extends AppCompatActivity {
                 rbtnGender_Nam_EditInfor.setChecked(false);
             }
         }
+
+        nguoi_dung_update = nguoi_dung;
     }
 
     protected void btnDatePicker_Click(){
@@ -126,15 +130,18 @@ public class SuaThongTinNguoiDungActivity extends AppCompatActivity {
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                if(year > Calendar.getInstance().get(Calendar.YEAR)){
+                int Current_Year = Calendar.getInstance().get(Calendar.YEAR);
+
+                if(year >  (Current_Year - 5)){
                     Toast.makeText(SuaThongTinNguoiDungActivity.this,"Năm Sinh Không Hợp Lệ", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 String ngay = Integer.toString(dayOfMonth);
-                String thang = Integer.toString(month);
+                String thang = Integer.toString(month + 1);
                 String nam = Integer.toString(year);
 
+                nguoi_dung_update.setNgaySinh(thang + "-" + ngay + "-" + nam);//<----Định Dạng Ngày Sinh Đúng
                 etxtNgaySinh_EditInfor.setText(ngay + "-" + thang + "-" + nam);
             }
         };
@@ -173,7 +180,6 @@ public class SuaThongTinNguoiDungActivity extends AppCompatActivity {
                     return;
                 }
 
-                nguoi_dung_update = new NguoiDung();
                 nguoi_dung_update.setHoTen(etxtHoTen_EditInfor.getText().toString());
                 nguoi_dung_update.setSoDienThoai(nguoi_dung.getSoDienThoai());
 
@@ -184,7 +190,6 @@ public class SuaThongTinNguoiDungActivity extends AppCompatActivity {
                 }
 
                 nguoi_dung_update.setMaNguoiDung(nguoi_dung.getMaNguoiDung());
-                nguoi_dung_update.setNgaySinh(etxtNgaySinh_EditInfor.getText().toString());
 
                 Call_API_Update();
             }

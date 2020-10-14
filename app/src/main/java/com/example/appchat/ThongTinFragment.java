@@ -127,13 +127,13 @@ public class ThongTinFragment extends Fragment {
                             String ngaySinh = nguoi_dung_infor.getNgaySinh();
                             ngaySinh = ngaySinh.substring(0, 10);
 
-                            String ngay = ngaySinh.substring(5, 7);
-                            String thang = ngaySinh.substring(8, 10);
+                            String thang = ngaySinh.substring(5, 7);
+                            String ngay = ngaySinh.substring(8, 10);
                             String nam = ngaySinh.substring(0, 4);
 
                             ngaySinh = ngay + "-" + thang + "-" + nam;
                             
-                            nguoi_dung_infor.setNgaySinh(ngaySinh);
+                            nguoi_dung_infor.setNgaySinh(thang + "-" + ngay + "-" + nam);
                             txtContent_NgaySinh_TaiKhoan.setText(ngaySinh);
                         }
 
@@ -150,9 +150,12 @@ public class ThongTinFragment extends Fragment {
 
                         //Lưu Lại Mã Người Dùng Khi Sủ Dụng Ở Activity Khác
                         preferences = getActivity().getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putInt("MaNguoiDung", response.body().getData().getMaNguoiDung());
-                        editor.apply();
+                        int MaNguoiDung = preferences.getInt("MaNguoiDung", 0);
+                        if(MaNguoiDung != 0){
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putInt("MaNguoiDung", response.body().getData().getMaNguoiDung());
+                            editor.apply();
+                        }
                     }
                 }
             }
@@ -232,7 +235,8 @@ public class ThongTinFragment extends Fragment {
             }
 
             if (nguoi_dung_infor.getNgaySinh() != null) {
-                txtContent_NgaySinh_TaiKhoan.setText(nguoi_dung_infor.getNgaySinh());
+                String[] ngaySinh = nguoi_dung_infor.getNgaySinh().split("-");
+                txtContent_NgaySinh_TaiKhoan.setText(ngaySinh[1] + "-" + ngaySinh[0] + "-" + ngaySinh[2]);
             }
 
             if (nguoi_dung_infor.getSoDienThoai() != null) {
