@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "132429206994",
-    "firebase_url": "https://imposter-45926.firebaseio.com",
-    "project_id": "imposter-45926",
-    "storage_bucket": "imposter-45926.appspot.com"
+    "project_number": "853720694349",
+    "firebase_url": "https://otpsms-1f37c.firebaseio.com",
+    "project_id": "otpsms-1f37c",
+    "storage_bucket": "otpsms-1f37c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:132429206994:android:64eaccf2264247f6c7640b",
+        "mobilesdk_app_id": "1:853720694349:android:780db6e05366eb8a1b6604",
         "android_client_info": {
           "package_name": "com.example.appchat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "132429206994-ru7lgsuiinv3sq2djv07r51t336vq70b.apps.googleusercontent.com",
+          "client_id": "853720694349-gnllvr3j7so17o4vb9ic3l3jvr0pb5vp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDfj_i1_W0CkWEJGoKMR7-vGacKipWWcZw"
+          "current_key": "AIzaSyBZEaA0YgEVyvCCJXGnbB3r4cuQKEiS15g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "132429206994-ru7lgsuiinv3sq2djv07r51t336vq70b.apps.googleusercontent.com",
+              "client_id": "853720694349-gnllvr3j7so17o4vb9ic3l3jvr0pb5vp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
