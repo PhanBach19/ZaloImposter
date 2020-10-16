@@ -16,6 +16,8 @@ public class DangKyHoTenActivity extends AppCompatActivity {
     private ImageButton btnBack;
     private EditText etxtHoTen;
 
+    private String SoDienThoai_DangKy;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,8 @@ public class DangKyHoTenActivity extends AppCompatActivity {
         Init_Data();
         btnTiepTuc_Click();
         btnBack_Click();
+
+        SoDienThoai_DangKy = getIntent().getStringExtra("SoDienThoai_DangKy");
     }
 
     protected void Init_Data(){
@@ -44,8 +48,10 @@ public class DangKyHoTenActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(DangKyHoTenActivity.this, DangKySoDienThoaiActivity.class);
+                Intent intent = new Intent(DangKyHoTenActivity.this, DangKyMatKhauActivity.class);
                 intent.putExtra("HoTen_DangKy", etxtHoTen.getText().toString());
+                intent.putExtra("SoDienThoai_DangKy", SoDienThoai_DangKy);
+
                 startActivity(intent);
                 finish();
             }

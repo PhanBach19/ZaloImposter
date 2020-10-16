@@ -32,11 +32,9 @@ import java.util.concurrent.TimeUnit;
 public class DangKySoDienThoaiActivity extends AppCompatActivity {
     FirebaseAuth auth;
 
-    private String HoTen_DangKy;
-
     private EditText etxtSoDienThoai_DangKy;
     protected Button btnTiepTuc_SoDienThoai;
-    protected Button btnBack_OTP;
+    protected ImageButton btnBack_DangKy_SDT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +48,13 @@ public class DangKySoDienThoaiActivity extends AppCompatActivity {
 
         Init_Data();
         btnTiepTuc_SoDienThoai_Click();
-
-        HoTen_DangKy = getIntent().getExtras().getString("HoTen_DangKy");
+        btnBack_DangKy_SDT_Click();
     }
 
     protected void Init_Data() {
         btnTiepTuc_SoDienThoai = (Button) findViewById(R.id.btnTiepTuc_SoDienThoai);
         etxtSoDienThoai_DangKy = (EditText) findViewById(R.id.etxtSoDienThoai_DangKy);
+        btnBack_DangKy_SDT = (ImageButton) findViewById(R.id.btnBack_DangKy_SDT);
     }
 
     protected void btnTiepTuc_SoDienThoai_Click() {
@@ -67,15 +65,23 @@ public class DangKySoDienThoaiActivity extends AppCompatActivity {
                     String SoDienThoai_GetCode = etxtSoDienThoai_DangKy.getText().toString();
                     SoDienThoai_GetCode = SoDienThoai_GetCode.substring(1);
 
-                    Intent intent_02 = new Intent(DangKySoDienThoaiActivity.this, NhapMaOTPActivity.class);
-                    intent_02.putExtra("SoDienThoai_DangKy", SoDienThoai_GetCode);
-                    intent_02.putExtra("HoTen_DangKy", HoTen_DangKy);
+                    Intent intent = new Intent(DangKySoDienThoaiActivity.this, NhapMaOTPActivity.class);
+                    intent.putExtra("SoDienThoai_DangKy", SoDienThoai_GetCode);
 
-                    startActivity(intent_02);
+                    startActivity(intent);
                     finish();
                 }else {
                     Toast.makeText(DangKySoDienThoaiActivity.this,"Bạn Chưa Nhập Số Điện Thoại", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    protected void btnBack_DangKy_SDT_Click(){
+        btnBack_DangKy_SDT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

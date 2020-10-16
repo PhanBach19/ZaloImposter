@@ -193,6 +193,7 @@ public class ThongTinFragment extends Fragment {
                         //Xoá Thông Tin Tài Khoản Trên Điện Thoại
                         SharedPreferences preferences = getActivity().getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
+                        editor.remove("MaNguoiDung");
                         editor.remove("SoDienThoai");
                         editor.remove("MatKhau");
                         editor.remove("Token_DangNhap");
@@ -200,6 +201,7 @@ public class ThongTinFragment extends Fragment {
 
                         Intent intent = new Intent(getActivity(), SplashScreen.class);
                         startActivity(intent);
+                        getActivity().finish();//<---Nhớ Finish Cái Activity
                     }
                 });
                 builder.setNegativeButton("Huỷ Bỏ", new DialogInterface.OnClickListener() {

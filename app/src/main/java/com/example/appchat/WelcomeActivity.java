@@ -44,7 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(WelcomeActivity.this, DangKyHoTenActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, DangKySoDienThoaiActivity.class);
                 startActivity(intent);
                 finish();
             }

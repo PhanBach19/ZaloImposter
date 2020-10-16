@@ -40,7 +40,6 @@ public class NhapMaOTPActivity extends AppCompatActivity {
     FirebaseAuth auth;
 
     private String SoDienThoai_XacThuc;
-    private String HoTen_DangKy;
 
     private String VerificationId;
     private PhoneAuthProvider.ForceResendingToken ResendToken;
@@ -77,7 +76,6 @@ public class NhapMaOTPActivity extends AppCompatActivity {
         btnBack_OTP_Click();
         btnResend_Code_DangKy_Click();
 
-        HoTen_DangKy = getIntent().getExtras().getString("HoTen_DangKy");
         SoDienThoai_XacThuc = "+84" + getIntent().getExtras().getString("SoDienThoai_DangKy");
         request_OTP(SoDienThoai_XacThuc);
 
@@ -297,11 +295,10 @@ public class NhapMaOTPActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent intent_03 = new Intent(NhapMaOTPActivity.this, DangKyMatKhauActivity.class);
-                    intent_03.putExtra("SoDienThoai_DangKy", SoDienThoai_XacThuc);
-                    intent_03.putExtra("HoTen_DangKy", HoTen_DangKy);
+                    Intent intent_02 = new Intent(NhapMaOTPActivity.this, DangKyHoTenActivity.class);
+                    intent_02.putExtra("SoDienThoai_DangKy", SoDienThoai_XacThuc);
 
-                    startActivity(intent_03);
+                    startActivity(intent_02);
                     finish();
                 } else {
                     prgbr_Waiting_OTP_DangKy.setVisibility(View.GONE);
