@@ -32,6 +32,6 @@ public interface DataClient {
     @GET("api/sdt={sdt}")
     Call<Message> GetThongTinNguoiDung_bySDT(@Path("sdt") String sdt, @HeaderMap Map<String, String> token);
 
-    @PUT("api")
+    @PATCH("api")
     Call<Message> SuaThongTin(@Body NguoiDung nguoiDung, @HeaderMap Map<String, String> token);
 }
