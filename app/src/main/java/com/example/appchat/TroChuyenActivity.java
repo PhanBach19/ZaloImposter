@@ -4,15 +4,26 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TroChuyenActivity extends AppCompatActivity {
     Fragment selectedFragment;
     BottomNavigationView bottomNav;
+    ImageButton btnSettings_Profile;
+    ImageButton btnCross;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,40 +34,109 @@ public class TroChuyenActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Init_Data();
-
+        btnSettings_Profile_Click();
 
         //Set Fragment Mặc Định Sẽ Mở Khi Load Activity
         selectedFragment = new TroChuyenFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
     }
 
-    private void Init_Data(){
+    private void Init_Data() {
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListerner);
+        btnSettings_Profile = (ImageButton) findViewById(R.id.btnSettings_Profile);
+        btnCross = (ImageButton) findViewById(R.id.btnCross);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListerner = new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()){
-                        case R.id.nav_message:
-                            selectedFragment = new TroChuyenFragment();
-                            break;
-                        case R.id.nav_friend:
-                            selectedFragment = new DanhBaFragment();
-                            break;
-                        case R.id.nav_group:
-                            selectedFragment = new NhomFragment();
-                            break;
-                        case R.id.nav_profile:
-                            selectedFragment = new ThongTinFragment();
-                            break;
-                        default:
-                            selectedFragment = new TroChuyenFragment();
-                    }
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_message:
+                    selectedFragment = new TroChuyenFragment();
+                    btnSettings_Profile.setVisibility(View.GONE);
+                    btnCross.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.nav_friend:
+                    selectedFragment = new DanhBaFragment();
+                    btnSettings_Profile.setVisibility(View.GONE);
+                    btnCross.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.nav_group:
+                    selectedFragment = new NhomFragment();
+                    btnSettings_Profile.setVisibility(View.GONE);
+                    btnCross.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.nav_profile:
+                    selectedFragment = new ThongTinFragment();
+                    btnSettings_Profile.setVisibility(View.VISIBLE);
+                    btnCross.setVisibility(View.GONE);
+                    break;
+                default:
+                    selectedFragment = new TroChuyenFragment();
+                    btnSettings_Profile.setVisibility(View.GONE);
+                    btnCross.setVisibility(View.VISIBLE);
+            }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
-                    return true;
-                }
-            };
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return true;
+        }
+    };
+
+    protected void btnSettings_Profile_Click() {
+        btnSettings_Profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(TroChuyenActivity.this, btnSettings_Profile);
+                popup.inflate(R.menu.profile_menu);
+                popup.show();
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.imenu_DoiMatKhau:
+                                break;
+                            case R.id.imenu_DangXuat:
+                                DangXuat();
+                                break;
+                        }
+                        return false;
+                    }
+                });
+            }
+        });
+    }
+
+    protected void DangXuat() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(TroChuyenActivity.this);
+        builder.setTitle("Đăng Xuất");
+        builder.setMessage("Bạn Có Chắc Muốn Đăng Xuất ?");
+        builder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Xoá Thông Tin Tài Khoản Trên Điện Thoại
+                SharedPreferences preferences = getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.remove("MaNguoiDung");
+                editor.remove("SoDienThoai");
+                editor.remove("MatKhau");
+                editor.remove("Token_DangNhap");
+                editor.apply();
+
+                Intent intent = new Intent(TroChuyenActivity.this, SplashScreen.class);
+                startActivity(intent);
+                finish();//<---Nhớ Finish Cái Activity
+            }
+        });
+        builder.setNegativeButton("Huỷ Bỏ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }

@@ -34,4 +34,7 @@ public interface DataClient {
 
     @PATCH("api")
     Call<Message> SuaThongTin(@Body NguoiDung nguoiDung, @HeaderMap Map<String, String> token);
+
+    @POST("api/checksdt")
+    Call<Message> CheckSoDienThoai(@Body NguoiDung nguoiDung);
 }

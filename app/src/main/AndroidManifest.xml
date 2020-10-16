@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SuaThongTinNguoiDungActivity"></activity>
+        <activity android:name=".NhapMatKhauMoiActivity"></activity>
+        <activity android:name=".LayLaiMatKhauActivity" />
+        <activity android:name=".SuaThongTinNguoiDungActivity" />
         <activity android:name=".DangKyMatKhauActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>
@@ -25,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TroChuyenActivity" />
-        <activity android:name=".NhapMaOTPActivity"></activity>
+        <activity android:name=".NhapMaOTPActivity" />
         <activity android:name=".DangKyHoTenActivity" />
         <activity android:name=".DangKySoDienThoaiActivity" />
         <activity android:name=".DangNhapActivity" />

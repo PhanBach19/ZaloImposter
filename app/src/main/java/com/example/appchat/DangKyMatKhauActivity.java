@@ -71,7 +71,7 @@ public class DangKyMatKhauActivity extends AppCompatActivity {
                 NguoiDung nguoiDung = new NguoiDung();
 
                 nguoiDung.setHoTen(HoTen);
-                nguoiDung.setSoDienThoai(SDT);
+                nguoiDung.setSoDienThoai("0" + SDT.substring(3));
                 nguoiDung.setPassword(MatKhau);
 
                 DataClient dataClient = APIUtils.getData();
@@ -86,7 +86,7 @@ public class DangKyMatKhauActivity extends AppCompatActivity {
                                 //Lưu Thông Tin Đăng Nhập Của Người Dùng
                                 preferences = getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("SoDienThoai", SDT);
+                                editor.putString("SoDienThoai", "0" + SDT.substring(3));
                                 editor.putString("MatKhau", MatKhau);
                                 editor.putString("Token_DangNhap", message.getToken());
                                 editor.apply();

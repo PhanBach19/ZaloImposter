@@ -15,6 +15,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.appchat.Models.Message;
+import com.example.appchat.Models.NguoiDung;
+import com.example.appchat.Retrofit2.APIUtils;
+import com.example.appchat.Retrofit2.DataClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -29,7 +33,12 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DangKySoDienThoaiActivity extends AppCompatActivity {
+    final String Regex_CheckSoDienThoai = "^0[1-9][0-9]{8}$";
     FirebaseAuth auth;
 
     private EditText etxtSoDienThoai_DangKy;
@@ -61,17 +70,42 @@ public class DangKySoDienThoaiActivity extends AppCompatActivity {
         btnTiepTuc_SoDienThoai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!etxtSoDienThoai_DangKy.getText().toString().isEmpty()){
-                    String SoDienThoai_GetCode = etxtSoDienThoai_DangKy.getText().toString();
-                    SoDienThoai_GetCode = SoDienThoai_GetCode.substring(1);
+                String SDT = etxtSoDienThoai_DangKy.getText().toString();
+                if(SDT.matches(Regex_CheckSoDienThoai)){
+                    NguoiDung nguoiDung = new NguoiDung();
+                    nguoiDung.setSoDienThoai(SDT);
 
-                    Intent intent = new Intent(DangKySoDienThoaiActivity.this, NhapMaOTPActivity.class);
-                    intent.putExtra("SoDienThoai_DangKy", SoDienThoai_GetCode);
+                    SDT = SDT.substring(1);
+                    String final_sdt = SDT;
 
-                    startActivity(intent);
-                    finish();
+                    DataClient client = APIUtils.getData();
+                    Call<Message> call = client.CheckSoDienThoai(nguoiDung);
+
+                    call.enqueue(new Callback<Message>() {
+                        @Override
+                        public void onResponse(Call<Message> call, Response<Message> response) {
+                            Message message = response.body();
+
+                            if(message != null){
+                                if (message.getSuccess() == 1){
+                                    Intent intent = new Intent(DangKySoDienThoaiActivity.this, NhapMaOTPActivity.class);
+                                    intent.putExtra("Mode_OTP", 2);
+                                    intent.putExtra("SoDienThoai_DangKy", final_sdt);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }else {
+                                Toast.makeText(DangKySoDienThoaiActivity.this,"Số Điện Thoại Đã Được Sử Dụng", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Message> call, Throwable t) {
+                            Toast.makeText(DangKySoDienThoaiActivity.this,"Có Lỗi Xảy Ra", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }else {
-                    Toast.makeText(DangKySoDienThoaiActivity.this,"Bạn Chưa Nhập Số Điện Thoại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DangKySoDienThoaiActivity.this,"Số Điện Thoại Không Hợp Lệ", Toast.LENGTH_SHORT).show();
                 }
             }
         });

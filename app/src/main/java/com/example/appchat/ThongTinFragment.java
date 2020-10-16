@@ -51,7 +51,7 @@ public class ThongTinFragment extends Fragment {
 
     String token, SDT;
     View view;
-    Button btnDangXuat, btnSuaThongTin;
+    Button btnSuaThongTin;
 
     TextView txtHoTen_TaiKhoan;
     TextView txtContent_GioiTinh_TaiKhoan;
@@ -70,7 +70,6 @@ public class ThongTinFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         Init_Data();
-        btnDangXuat_Click();
         btnSuaThongTin_Click();
 
         Load_ThongTin_NguoiDung();
@@ -79,11 +78,10 @@ public class ThongTinFragment extends Fragment {
     }
 
     protected void Init_Data() {
-        SharedPreferences preferences = getActivity().getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
+        preferences = getActivity().getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
         token = preferences.getString("Token_DangNhap", "");
         SDT = preferences.getString("SoDienThoai", "");
 
-        btnDangXuat = (Button) view.findViewById(R.id.btnDangXuat_TaiKhoan);
         btnSuaThongTin = (Button) view.findViewById(R.id.btnSuaThongTin);
 
         txtHoTen_TaiKhoan = (TextView) view.findViewById(R.id.txtHoTen_TaiKhoan);
@@ -139,8 +137,7 @@ public class ThongTinFragment extends Fragment {
 
                         if (nguoi_dung_infor.getSoDienThoai() != null) {
                             String SDT = response.body().getData().getSoDienThoai();
-                            SDT = SDT.substring(3);
-                            txtContent_SoDienThoai_TaiKhoan.setText("0" + SDT);
+                            txtContent_SoDienThoai_TaiKhoan.setText(SDT);
                         }
 
                         prgbr_Loading_Profile.setVisibility(View.GONE);
@@ -149,7 +146,6 @@ public class ThongTinFragment extends Fragment {
                         container_infor_account.setVisibility(View.VISIBLE);
 
                         //Lưu Lại Mã Người Dùng Khi Sủ Dụng Ở Activity Khác
-                        preferences = getActivity().getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
                         int MaNguoiDung = preferences.getInt("MaNguoiDung", 0);
                         if(MaNguoiDung != 0){
                             SharedPreferences.Editor editor = preferences.edit();
@@ -180,43 +176,6 @@ public class ThongTinFragment extends Fragment {
         });
     }
 
-    protected void btnDangXuat_Click() {
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Đăng Xuất");
-                builder.setMessage("Bạn Có Chắc Muốn Đăng Xuất ?");
-                builder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Xoá Thông Tin Tài Khoản Trên Điện Thoại
-                        SharedPreferences preferences = getActivity().getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.remove("MaNguoiDung");
-                        editor.remove("SoDienThoai");
-                        editor.remove("MatKhau");
-                        editor.remove("Token_DangNhap");
-                        editor.apply();
-
-                        Intent intent = new Intent(getActivity(), SplashScreen.class);
-                        startActivity(intent);
-                        getActivity().finish();//<---Nhớ Finish Cái Activity
-                    }
-                });
-                builder.setNegativeButton("Huỷ Bỏ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -243,8 +202,7 @@ public class ThongTinFragment extends Fragment {
 
             if (nguoi_dung_infor.getSoDienThoai() != null) {
                 String SDT = nguoi_dung_infor.getSoDienThoai();
-                SDT = SDT.substring(3);
-                txtContent_SoDienThoai_TaiKhoan.setText("0" + SDT);
+                txtContent_SoDienThoai_TaiKhoan.setText(SDT);
             }
         }
     }

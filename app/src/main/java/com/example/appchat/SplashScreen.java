@@ -35,7 +35,7 @@ public class SplashScreen extends AppCompatActivity {
             layout_wait_load_splash_screen.setVisibility(View.GONE);
             HienThiThongBao("Có Lỗi Xảy Ra", "Vui Lòng Kiểm Tra Kết Nối Internet Của Bạn", SplashScreen.this);
         }else {
-            timer = new CountDownTimer(1500, 1000) {
+            timer = new CountDownTimer(500, 500) {
                 @Override
                 public void onTick(long millisUntilFinished) {
 

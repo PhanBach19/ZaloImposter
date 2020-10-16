@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class DangNhapActivity extends AppCompatActivity {
     String SDT, MatKhau;
-    Button btnTiepTuc_DangNhap;
+    Button btnTiepTuc_DangNhap, btnLayLaiMatKhau;
     ImageButton btnBack_DangNhap;
 
     EditText editTextMatKhau_DangNhap;
@@ -44,9 +44,11 @@ public class DangNhapActivity extends AppCompatActivity {
         Init_Data();
         btnBack_DangNhap_Click();
         btnTiepTuc_DangNhap_Click();
+        btnLayLaiMatKhau_Click();
     }
 
     protected void  Init_Data(){
+        btnLayLaiMatKhau = (Button) findViewById(R.id.btnLayLaiMatKhau);
         btnBack_DangNhap = (ImageButton) findViewById(R.id.btnBack_DangNhap);
         btnTiepTuc_DangNhap = (Button) findViewById(R.id.btnTiepTuc_DangNhap);
 
@@ -59,7 +61,6 @@ public class DangNhapActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SDT = editTextSDT_DangNhap.getText().toString();
-                SDT = "+84" + SDT.substring(1);
                 MatKhau = editTextMatKhau_DangNhap.getText().toString();
 
                 NguoiDung nguoiDung = new NguoiDung();
@@ -96,6 +97,7 @@ public class DangNhapActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Message> call, Throwable t) {
+                        Toast.makeText(DangNhapActivity.this,"Đăng Nhập Thất Bại", Toast.LENGTH_SHORT).show();
                         Log.e("Server Message: ", t.getMessage());
                     }
                 });
@@ -107,6 +109,17 @@ public class DangNhapActivity extends AppCompatActivity {
         btnBack_DangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    protected void btnLayLaiMatKhau_Click(){
+        btnLayLaiMatKhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DangNhapActivity.this, LayLaiMatKhauActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

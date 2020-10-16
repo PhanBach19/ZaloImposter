@@ -1,6 +1,7 @@
 package com.example.appchat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -36,6 +37,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import java.util.concurrent.TimeUnit;
 
 public class NhapMaOTPActivity extends AppCompatActivity {
+    int mode_otp = 0;
     int Count_Send_Code = 1;
     FirebaseAuth auth;
 
@@ -76,6 +78,7 @@ public class NhapMaOTPActivity extends AppCompatActivity {
         btnBack_OTP_Click();
         btnResend_Code_DangKy_Click();
 
+        mode_otp = getIntent().getExtras().getInt("Mode_OTP");
         SoDienThoai_XacThuc = "+84" + getIntent().getExtras().getString("SoDienThoai_DangKy");
         request_OTP(SoDienThoai_XacThuc);
 
@@ -121,7 +124,7 @@ public class NhapMaOTPActivity extends AppCompatActivity {
                     txt_notify_sending_otp.setVisibility(View.VISIBLE);
                     container_nhap_ma_xac_thuc.setVisibility(View.GONE);
 
-                    Intent intent = new Intent(NhapMaOTPActivity.this, DangKyHoTenActivity.class);
+                    Intent intent = new Intent(NhapMaOTPActivity.this, DangKySoDienThoaiActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -295,11 +298,21 @@ public class NhapMaOTPActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent intent_02 = new Intent(NhapMaOTPActivity.this, DangKyHoTenActivity.class);
-                    intent_02.putExtra("SoDienThoai_DangKy", SoDienThoai_XacThuc);
+                    //Chuyển Sang Activity Đăng Ký Tài Khoản
+                    if(mode_otp == 2){
+                        Intent intent_02 = new Intent(NhapMaOTPActivity.this, DangKyHoTenActivity.class);
+                        intent_02.putExtra("SoDienThoai_DangKy", SoDienThoai_XacThuc);
 
-                    startActivity(intent_02);
-                    finish();
+                        startActivity(intent_02);
+                        finish();
+                    }
+
+                    //Chuyển Sang Activity Nhập Mật Khẩu Mới
+                    if(mode_otp == 1){
+                        Intent intent_02 = new Intent(NhapMaOTPActivity.this, NhapMatKhauMoiActivity.class);
+                        startActivity(intent_02);
+                        finish();
+                    }
                 } else {
                     prgbr_Waiting_OTP_DangKy.setVisibility(View.GONE);
                     txt_notify_sending_otp.setVisibility(View.GONE);
