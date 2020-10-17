@@ -87,7 +87,7 @@ public class NhapMatKhauMoiActivity extends AppCompatActivity {
                                 if (response.body().getSuccess() == 1) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(NhapMatKhauMoiActivity.this);
                                     builder.setMessage("Đổi Mật Khẩu Thành Công");
-                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    builder.setPositiveButton("Đăng Nhập Lại", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent intent = new Intent(NhapMatKhauMoiActivity.this, DangNhapActivity.class);

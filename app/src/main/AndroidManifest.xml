@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NhapMatKhauMoiActivity">
-        </activity>
+        <activity android:name=".DoiMatKhauActivity"></activity>
+        <activity android:name=".NhapMatKhauMoiActivity"></activity>
         <activity android:name=".LayLaiMatKhauActivity" />
         <activity android:name=".SuaThongTinNguoiDungActivity" />
         <activity android:name=".DangKyMatKhauActivity" />

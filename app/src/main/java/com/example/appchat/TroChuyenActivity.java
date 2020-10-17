@@ -96,6 +96,7 @@ public class TroChuyenActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.imenu_DoiMatKhau:
+                                DoiMatKhau();
                                 break;
                             case R.id.imenu_DangXuat:
                                 DangXuat();
@@ -138,5 +139,17 @@ public class TroChuyenActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    protected void DoiMatKhau(){
+        SharedPreferences preferences = getSharedPreferences("data_dang_nhap", MODE_PRIVATE);
+        String SDT = preferences.getString("SoDienThoai", "");
+
+        if(!SDT.isEmpty()){
+            Intent intent = new Intent(TroChuyenActivity.this, DoiMatKhauActivity.class);
+            intent.putExtra("SoDienThoai_NguoiDung", SDT);
+            startActivity(intent);
+            finish();
+        }
     }
 }
