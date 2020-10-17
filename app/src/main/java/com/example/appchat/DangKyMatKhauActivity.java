@@ -7,9 +7,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.appchat.Models.Message;
 import com.example.appchat.Models.NguoiDung;
@@ -34,6 +36,9 @@ public class DangKyMatKhauActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_ky_mat_khau);
+
+        //Ẩn Thanh Trạng Thái
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Init_Data();
         btnBack_Click();
@@ -64,7 +69,8 @@ public class DangKyMatKhauActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MatKhau = editTextMatKhau_DangKy.getText().toString();
 
-                if (MatKhau.isEmpty()) {
+                if (MatKhau.length() < 6){
+                    Toast.makeText(DangKyMatKhauActivity.this,"Mật Khẩu Phải Có 6 Kí Tự Trở Lên", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

@@ -37,4 +37,7 @@ public interface DataClient {
 
     @POST("api/checksdt")
     Call<Message> CheckSoDienThoai(@Body NguoiDung nguoiDung);
+
+    @PATCH("api/updatepass")
+    Call<Message> UpdatePassword(@Body NguoiDung nguoiDung);
 }

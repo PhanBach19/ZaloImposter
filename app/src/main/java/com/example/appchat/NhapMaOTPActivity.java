@@ -310,6 +310,11 @@ public class NhapMaOTPActivity extends AppCompatActivity {
                     //Chuyển Sang Activity Nhập Mật Khẩu Mới
                     if(mode_otp == 1){
                         Intent intent_02 = new Intent(NhapMaOTPActivity.this, NhapMatKhauMoiActivity.class);
+
+                        SoDienThoai_XacThuc = SoDienThoai_XacThuc.substring(3);
+                        SoDienThoai_XacThuc = "0" + SoDienThoai_XacThuc;
+
+                        intent_02.putExtra("SoDienThoai_DangKy", SoDienThoai_XacThuc);
                         startActivity(intent_02);
                         finish();
                     }

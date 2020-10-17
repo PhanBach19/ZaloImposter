@@ -18,7 +18,7 @@
 
         <ImageButton
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/btnBack_DangKy_MatKhau"
+            android:id="@+id/btnBack_QuenMatKhau"
             android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
             android:background="#00FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         <TextView
             android:textColor="#fff"
             android:fontFamily="@font/rubik_medium"
-            app:layout_constraintStart_toStartOf="@+id/btnBack_DangKy_MatKhau"
+            app:layout_constraintStart_toStartOf="@+id/btnBack_QuenMatKhau"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

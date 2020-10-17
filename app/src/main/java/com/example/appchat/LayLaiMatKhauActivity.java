@@ -75,6 +75,7 @@ public class LayLaiMatKhauActivity extends AppCompatActivity {
                                 intent.putExtra("Mode_OTP", 1);
                                 intent.putExtra("SoDienThoai_DangKy", final_sdt);
                                 startActivity(intent);
+                                finish();
                             }
                         }
 

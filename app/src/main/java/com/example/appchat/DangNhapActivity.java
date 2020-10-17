@@ -24,6 +24,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DangNhapActivity extends AppCompatActivity {
+    final String Regex_CheckSoDienThoai = "^0[1-9][0-9]{8}$";
+
     String SDT, MatKhau;
     Button btnTiepTuc_DangNhap, btnLayLaiMatKhau;
     ImageButton btnBack_DangNhap;
@@ -62,6 +64,16 @@ public class DangNhapActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SDT = editTextSDT_DangNhap.getText().toString();
                 MatKhau = editTextMatKhau_DangNhap.getText().toString();
+
+                if(!SDT.matches(Regex_CheckSoDienThoai)) {
+                    Toast.makeText(DangNhapActivity.this,"Số Điện Thoại Không Hợp Lệ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (MatKhau.length() < 6){
+                    Toast.makeText(DangNhapActivity.this,"Mật Khẩu Phải Có 6 Kí Tự Trở Lên", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 NguoiDung nguoiDung = new NguoiDung();
 
